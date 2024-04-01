@@ -874,6 +874,8 @@ static void __init print_unknown_bootoptions(void)
 asmlinkage __visible __init __no_sanitize_address __noreturn __no_stack_protector
 void start_kernel(void)
 {
+	const char *custom_banner = "Welcome to rpi/Linux compiled by wanix1988";
+
 	char *command_line;
 	char *after_dashes;
 
@@ -893,6 +895,8 @@ void start_kernel(void)
 	 */
 	boot_cpu_init();
 	page_address_init();
+
+	pr_notice("%s", custom_banner);
 	pr_notice("%s", linux_banner);
 	early_security_init();
 	setup_arch(&command_line);
